@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1248991,
+    "name": "Colombo",
+    "countryCode": "LK",
+    "country": "Sri Lanka"
+  },
+  {
+    "id": 1850147,
+    "name": "Tokyo",
+    "countryCode": "JP",
+    "country": "Japan"
+  },
+  {
+    "id": 2643743,
+    "name": "London",
+    "countryCode": "GB",
+    "country": "United Kingdom"
+  },
+  {
+    "id": 5128581,
+    "name": "New York",
+    "countryCode": "US",
+    "country": "United States"
+  },
+  {
+    "id": 2988507,
+    "name": "Paris",
+    "countryCode": "FR",
+    "country": "France"
+  },
+  {
+    "id": 2147714,
+    "name": "Sydney",
+    "countryCode": "AU",
+    "country": "Australia"
+  },
+  {
+    "id": 292223,
+    "name": "Dubai",
+    "countryCode": "AE",
+    "country": "United Arab Emirates"
+  },
+  {
+    "id": 993800,
+    "name": "Johannesburg",
+    "countryCode": "ZA",
+    "country": "South Africa"
+  },
+  {
+    "id": 6167865,
+    "name": "Toronto",
+    "countryCode": "CA",
+    "country": "Canada"
+  },
+  {
+    "id": 2950159,
+    "name": "Berlin",
+    "countryCode": "DE",
+    "country": "Germany"
+  }
+]
