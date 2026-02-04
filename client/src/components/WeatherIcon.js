@@ -1,8 +1,8 @@
 import {
   SunIcon,
   CloudIcon,
-  CloudRainIcon,
-  CloudSunIcon,
+  CloudArrowDownIcon,
+  CloudArrowUpIcon,
 } from '@heroicons/react/24/outline';
 
 export default function WeatherIcon({ description, className = "w-12 h-12 mx-auto" }) {
@@ -15,10 +15,10 @@ export default function WeatherIcon({ description, className = "w-12 h-12 mx-aut
     return <CloudIcon className={`${className} text-gray-500`} />;
   }
   if (lower.includes('rain') || lower.includes('shower')) {
-    return <CloudRainIcon className={`${className} text-blue-500`} />;
+    return <CloudArrowDownIcon className={`${className} text-blue-500`} />;
   }
   if (lower.includes('partly') || lower.includes('few clouds')) {
-    return <CloudSunIcon className={`${className} text-yellow-600`} />;
+    return <CloudArrowUpIcon className={`${className} text-yellow-600`} />;
   }
   return <CloudIcon className={`${className} text-gray-400`} />;
 }
