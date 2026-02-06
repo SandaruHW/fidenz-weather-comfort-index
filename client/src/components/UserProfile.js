@@ -1,11 +1,26 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from 'react';
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
+  const [imageError, setImageError] = useState(false);
 
   if (!isAuthenticated || !user) {
     return null;
   }
+
+  // Get user initials for fallback
+  const getInitials = () => {
+    if (user.name) {
+      return user.name
+        .split(' ')
+        .map(name => name.charAt(0))
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+    }
+    return user.email?.charAt(0)?.toUpperCase() || 'U';
+  };
 
   return (
     <div className="flex items-center gap-3">
@@ -23,15 +38,17 @@ export default function UserProfile() {
         )}
       </div>
       <div className="flex items-center justify-center w-10 h-10 overflow-hidden bg-indigo-500 rounded-full">
-        {user.picture ? (
+        {user.picture && !imageError ? (
           <img 
             src={user.picture} 
             alt={user.name || user.email}
-            className="w-full h-full object-cover"
+            className="object-cover w-full h-full"
+            onError={() => setImageError(true)}
+            onLoad={() => setImageError(false)}
           />
         ) : (
           <span className="text-sm font-medium text-white">
-            {(user.name || user.email)?.charAt(0)?.toUpperCase()}
+            {getInitials()}
           </span>
         )}
       </div>
