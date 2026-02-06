@@ -132,106 +132,125 @@ function App() {
                   <p className="text-sm text-gray-600">Real-time comfort index rankings for major cities</p>
                 </div>
                 
-                <div className="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                  {cities.map((city) => {
-                    const comfortStyle = getComfortColors(city.score);
-                    const isTopThree = city.rank <= 3;
-                    return (
-                      <div 
-                        key={city.name || city.id} 
-                        className={`relative p-6 bg-white shadow-sm rounded-xl transition-all duration-300 hover:shadow-lg ${
-                          isTopThree ? 'ring-2 ring-blue-500 ring-opacity-50 shadow-xl scale-105 bg-gradient-to-br from-white to-blue-50' : ''
-                        } ${city.rank === 1 ? 'ring-yellow-400 bg-gradient-to-br from-yellow-50 to-white' : ''}`}
-                      >
-                        {/* Rank Badge with enhanced styling for top 3 */}
-                        <div className="absolute top-3 left-3">
-                          <div className={`${getRankBadgeColor(city.rank)} text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center ${
-                            isTopThree ? 'w-8 h-8 text-sm shadow-lg animate-pulse' : ''
-                          } ${city.rank === 1 ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 shadow-yellow-400/50' : ''}`}>
-                            #{city.rank}
-                          </div>
-                          {/* Crown for #1 */}
-                          {city.rank === 1 && (
-                            <div className="absolute -top-1 -right-1">
-                              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732L14.146 12.8l-1.179 4.456a1 1 0 01-1.934 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732L9.854 7.2l1.179-4.456A1 1 0 0112 2z" clipRule="evenodd" />
-                              </svg>
+                {/* Top Performers Section */}
+                <div className="mt-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">🏆</span>
+                      <h3 className="text-xl font-bold text-gray-900">Top Performers</h3>
+                    </div>
+                    <span className="px-3 py-1 text-sm font-bold text-white bg-orange-500 rounded-full">
+                      GLOBAL TOP 3
+                    </span>
+                  </div>
+                  <p className="mb-6 text-sm text-gray-600">Cities with the highest comfort index scores</p>
+                  
+                  <div className="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-2 lg:grid-cols-3">
+                    {cities.slice(0, 3).map((city) => {
+                      const comfortStyle = getComfortColors(city.score);
+                      
+                      return (
+                        <div key={city.name || city.id} className="relative p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+                          <div className="absolute top-4 left-4">
+                            <div className={`${getRankBadgeColor(city.rank)} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-sm`}>
+                              #{city.rank}
                             </div>
-                          )}
-                        </div>
-
-                        {/* Weather Icon with enhanced size for top 3 */}
-                        <div className="flex justify-center mt-4 mb-4">
-                          <WeatherIcon 
-                            description={city.description || city.weather || 'sunny'} 
-                            className={`${isTopThree ? 'w-16 h-16' : 'w-12 h-12'}`} 
-                          />
-                        </div>
-
-                        {/* City Name with enhanced styling for top 3 */}
-                        <h3 className={`mb-1 text-center text-gray-900 ${
-                          isTopThree ? 'text-xl font-bold' : 'text-lg font-semibold'
-                        }`}>
-                          {city.name}
-                          {city.rank === 1 && <span className="ml-1 text-yellow-500">🏆</span>}
-                          {city.rank === 2 && <span className="ml-1 text-gray-400">🥈</span>}
-                          {city.rank === 3 && <span className="ml-1 text-yellow-600">🥉</span>}
-                        </h3>
-
-                        {/* Temperature with enhanced styling for top 3 */}
-                        <div className={`mb-3 text-center font-light ${
-                          isTopThree ? 'text-4xl text-blue-600 font-bold' : 'text-3xl text-blue-500'
-                        }`}>
-                          {city.temp}°C
-                        </div>
-
-                        {/* Comfort Index with enhanced styling for top 3 */}
-                        <div className="mb-2 text-center">
-                          <span className={`text-gray-500 ${isTopThree ? 'text-sm font-medium' : 'text-xs'}`}>
-                            Comfort Index
-                          </span>
-                          <div className={`text-gray-900 ${
-                            isTopThree ? 'text-2xl font-bold text-blue-700' : 'text-lg font-semibold'
-                          }`}>
-                            {city.score}
                           </div>
-                        </div>
 
-                        {/* Comfort Label with enhanced styling for top 3 */}
-                        <div className="flex justify-center mb-4">
-                          <span className={`inline-flex items-center rounded-full text-xs font-medium border ${
-                            isTopThree ? 'px-3 py-1 text-sm font-bold' : 'px-2.5 py-0.5'
-                          } ${comfortStyle.bg} ${comfortStyle.text} ${comfortStyle.border}`}>
-                            {comfortStyle.label}
-                          </span>
-                        </div>
+                          <div className="flex justify-center mt-6 mb-4">
+                            <WeatherIcon description={city.description || city.weather || 'sunny'} className="w-16 h-16" />
+                          </div>
 
-                        {/* Weather Details */}
-                        <div className={`grid grid-cols-2 gap-4 text-gray-500 ${
-                          isTopThree ? 'text-sm' : 'text-xs'
-                        }`}>
-                          <div>
-                            <span className="block">Humidity</span>
-                            <span className={`text-gray-900 ${isTopThree ? 'font-semibold' : 'font-medium'}`}>
-                              {city.humidity}%
+                          <h3 className="mb-3 text-xl font-bold text-center text-gray-900">{city.name}</h3>
+
+                          <div className="mb-4 text-4xl font-light text-center text-blue-500">
+                            {city.temp}°C
+                          </div>
+
+                          <div className="mb-3 text-center">
+                            <span className="text-sm text-gray-500">Comfort Index</span>
+                            <div className="text-2xl font-bold text-gray-900">{city.score}</div>
+                          </div>
+
+                          <div className="flex justify-center mb-6">
+                            <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium border-2 ${comfortStyle.bg} ${comfortStyle.text} ${comfortStyle.border}`}>
+                              {comfortStyle.label}
                             </span>
                           </div>
-                          <div>
-                            <span className="block">Wind</span>
-                            <span className={`text-gray-900 ${isTopThree ? 'font-semibold' : 'font-medium'}`}>
-                              {Math.round((city.windSpeed || city.wind || 0) * 3.6)} km/h
-                            </span>
+
+                          <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
+                            <div className="text-center">
+                              <span className="block mb-1">Humidity</span>
+                              <span className="font-semibold text-gray-900">{city.humidity}%</span>
+                            </div>
+                            <div className="text-center">
+                              <span className="block mb-1">Wind</span>
+                              <span className="font-semibold text-gray-900">{Math.round((city.windSpeed || city.wind || 0) * 3.6)} km/h</span>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Special effects for top 3 */}
-                        {isTopThree && (
-                          <div className="absolute inset-0 transition-opacity duration-300 opacity-0 rounded-xl bg-gradient-to-r from-transparent via-white to-transparent hover:opacity-20"></div>
-                        )}
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
+
+                {/* Global Rankings Section */}
+                {cities.length > 3 && (
+                  <div>
+                    <div className="flex items-center gap-2 mb-6">
+                      <span className="text-2xl">🌍</span>
+                      <h3 className="text-xl font-bold text-gray-900">Global Rankings</h3>
+                    </div>
+                    <p className="mb-6 text-sm text-gray-600">Comprehensive comfort index across all cities</p>
+                    
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                      {cities.slice(3).map((city) => {
+                        const comfortStyle = getComfortColors(city.score);
+                        return (
+                          <div key={city.name || city.id} className="relative p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="absolute top-4 left-4">
+                              <div className={`${getRankBadgeColor(city.rank)} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-sm`}>
+                                #{city.rank}
+                              </div>
+                            </div>
+
+                            <div className="flex justify-center mt-6 mb-4">
+                              <WeatherIcon description={city.description || city.weather || 'sunny'} className="w-14 h-14" />
+                            </div>
+
+                            <h3 className="mb-3 text-lg font-bold text-center text-gray-900">{city.name}</h3>
+
+                            <div className="mb-4 text-3xl font-light text-center text-blue-500">
+                              {city.temp}°C
+                            </div>
+
+                            <div className="mb-3 text-center">
+                              <span className="text-sm text-gray-500">Comfort Index</span>
+                              <div className="text-xl font-bold text-gray-900">{city.score}</div>
+                            </div>
+
+                            <div className="flex justify-center mb-6">
+                              <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border-2 ${comfortStyle.bg} ${comfortStyle.text} ${comfortStyle.border}`}>
+                                {comfortStyle.label}
+                              </span>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
+                              <div className="text-center">
+                                <span className="block mb-1">Humidity</span>
+                                <span className="font-semibold text-gray-900">{city.humidity}%</span>
+                              </div>
+                              <div className="text-center">
+                                <span className="block mb-1">Wind</span>
+                                <span className="font-semibold text-gray-900">{Math.round((city.windSpeed || city.wind || 0) * 3.6)} km/h</span>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
