@@ -2,6 +2,7 @@
 
 A secure weather analytics application that provides a custom Comfort Index score (0-100) for major cities worldwide. The app fetches real-time data from OpenWeatherMap, implements intelligent server-side caching, features a responsive React UI, and includes Auth0 authentication with MFA support.
 
+
 ## Features
 
 - **Custom Comfort Index**: Proprietary algorithm that calculates weather comfort scores based on temperature, humidity, wind speed, and cloudiness
@@ -37,6 +38,8 @@ A secure weather analytics application that provides a custom Comfort Index scor
    cp .env.example .env  # or create .env manually
    ```
 
+   **Note for Evaluators:** The `.env.example` files contain working API keys and credentials for immediate evaluation. Simply running `cp .env.example .env` will set up the application without any additional configuration required. These files and their API keys are included in this repository for assignment evaluation purposes only. In production environments, API keys should NEVER be committed to version control.
+
 4. Configure environment variables in `.env`:
    ```env
    OPENWEATHER_API_KEY=your_api_key_here
@@ -64,7 +67,10 @@ A secure weather analytics application that provides a custom Comfort Index scor
    npm install
    ```
 
-3. Configure Auth0 settings in your React app (typically in environment variables or config)
+3. Create environment file:
+   ```bash
+   cp .env.example .env
+   ```
 
 4. Start the development server:
    ```bash
