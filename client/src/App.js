@@ -167,7 +167,7 @@ function WeatherDashboard() {
                       const comfortStyle = getComfortColors(city.score);
                       
                       return (
-                        <div key={city.name || city.id} className="relative p-6 transition-all duration-300 shadow-sm bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-md dark:shadow-gray-700/30">
+                        <div key={city.name || city.id} className="relative p-6 transition-all duration-300 shadow-sm cursor-pointer bg-white dark:bg-gray-800 rounded-2xl hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] hover:border-blue-300 dark:hover:border-blue-600 border border-gray-200 dark:border-gray-700 dark:shadow-gray-700/30">
                           <div className="absolute top-4 left-4">
                             <div className={`${getRankBadgeColor(city.rank)} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-sm`}>
                               #{city.rank}
@@ -224,7 +224,7 @@ function WeatherDashboard() {
                       {cities.slice(3).map((city) => {
                         const comfortStyle = getComfortColors(city.score);
                         return (
-                          <div key={city.name || city.id} className="relative p-6 transition-all duration-300 shadow-sm bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-md dark:shadow-gray-700/30">
+                          <div key={city.name || city.id} className="relative p-6 transition-all duration-300 shadow-sm cursor-pointer bg-white dark:bg-gray-800 rounded-2xl hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] hover:border-blue-300 dark:hover:border-blue-600 border border-gray-200 dark:border-gray-700 dark:shadow-gray-700/30">
                             <div className="absolute top-4 left-4">
                               <div className={`${getRankBadgeColor(city.rank)} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-sm`}>
                                 #{city.rank}
@@ -289,7 +289,7 @@ function WeatherDashboard() {
                       {cities.map((city) => {
                         const comfortStyle = getComfortColors(city.score);
                         return (
-                          <tr key={city.name || city.id}>
+                          <tr key={city.name || city.id} className="transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-700/50">
                             <td className="px-6 py-4 whitespace-nowrap">
                               <div className={`${getRankBadgeColor(city.rank)} text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center`}>
                                 {city.rank}
