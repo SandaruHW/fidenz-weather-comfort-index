@@ -1,7 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import WeatherIcon from './components/WeatherIcon';
+import ProtectedRoute from './components/ProtectedRoute';
+import AuthenticationButton from './components/AuthenticationButton';
+import UserProfile from './components/UserProfile';
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+
+  // Show authentication flow for non-authenticated users
+  if (!isAuthenticated) {
+    return <ProtectedRoute><WeatherDashboard /></ProtectedRoute>;
+  }
+
+  return <WeatherDashboard />;
+}
+
+function WeatherDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,19 +78,19 @@ function App() {
           <h1 className="text-2xl font-semibold text-blue-600">
             Weather Comfort Dashboard
           </h1>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <button 
               onClick={fetchData}
               disabled={loading}
-              className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-50"
+              className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-50 transition-colors"
+              title="Refresh data"
             >
               <svg className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
             </button>
-            <div className="flex items-center justify-center w-8 h-8 text-sm font-medium text-white bg-blue-500 rounded-full">
-              JD
-            </div>
+            <UserProfile />
+            <AuthenticationButton />
           </div>
         </div>
       </header>
