@@ -6,7 +6,7 @@ export default function AuthenticationButton() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center w-8 h-8">
-        <div className="w-4 h-4 border-b-2 border-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-4 h-4 border-b-2 border-indigo-600 dark:border-indigo-400 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -19,7 +19,7 @@ export default function AuthenticationButton() {
             returnTo: window.location.origin 
           } 
         })}
-        className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+        className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 transition-colors"
       >
         Sign Out
       </button>
@@ -29,7 +29,7 @@ export default function AuthenticationButton() {
   return (
     <button
       onClick={() => loginWithRedirect()}
-      className="px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
+        className="px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
     >
       Sign In
     </button>

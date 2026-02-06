@@ -12,7 +12,7 @@ export default function WeatherIcon({ description, className = "w-12 h-12 mx-aut
     return <SunIcon className={`${className} text-yellow-500`} />;
   }
   if (lower.includes('cloud') && !lower.includes('rain')) {
-    return <CloudIcon className={`${className} text-gray-500`} />;
+    return <CloudIcon className={`${className} text-gray-500 dark:text-gray-400`} />;
   }
   if (lower.includes('rain') || lower.includes('shower')) {
     return <CloudArrowDownIcon className={`${className} text-blue-500`} />;
@@ -20,5 +20,5 @@ export default function WeatherIcon({ description, className = "w-12 h-12 mx-aut
   if (lower.includes('partly') || lower.includes('few clouds')) {
     return <CloudArrowUpIcon className={`${className} text-yellow-600`} />;
   }
-  return <CloudIcon className={`${className} text-gray-400`} />;
+  return <CloudIcon className={`${className} text-gray-400 dark:text-gray-500`} />;
 }
