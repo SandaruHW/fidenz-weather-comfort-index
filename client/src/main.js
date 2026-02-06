@@ -7,7 +7,6 @@ import App from './App.js'
 // Auth0 configuration
 const domain = import.meta.env.VITE_AUTH0_DOMAIN
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID
-const audience = import.meta.env.VITE_AUTH0_AUDIENCE
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,7 +15,6 @@ createRoot(document.getElementById('root')).render(
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: audience,
         scope: "openid profile email"
       }}
     >
